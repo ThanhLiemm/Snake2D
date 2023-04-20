@@ -10,6 +10,7 @@ public static class Loader
     {
         GameScene,
         Loading,
+        MainMenu,
     }
 
     public static void Load(Scene scene)
