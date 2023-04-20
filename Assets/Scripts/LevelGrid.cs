@@ -38,8 +38,30 @@ public class LevelGrid
         {
             Object.Destroy(foodGameObject);
             SpawnFood();
+            GameHandler.addScore();
             return true;
         }
         else return false;
+    }
+
+    public Vector2Int ValidateGridPosition(Vector2Int gridPosition)
+    {
+        if(gridPosition.x < 0)
+        {
+            gridPosition.x = width;
+        }
+        if (gridPosition.x > width)
+        {
+            gridPosition.x = 0;
+        }
+        if (gridPosition.y < 0)
+        {
+            gridPosition.y = height - 1;
+        }
+        if (gridPosition.y > height)
+        {
+            gridPosition.y = 0;
+        }
+        return gridPosition;
     }
 }

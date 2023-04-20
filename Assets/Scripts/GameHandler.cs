@@ -19,6 +19,8 @@ using System;
 
 public class GameHandler : MonoBehaviour {
 
+    //private static GameHandler instance;
+    private static int score;
     [SerializeField] private Snake snake;
     private LevelGrid levelGrid;
 
@@ -28,10 +30,33 @@ public class GameHandler : MonoBehaviour {
 
         snake.Setup(levelGrid);
         levelGrid.Setup(snake);
-        //get snake head sprite
-        //GameObject snakeHeadGameObject = new GameObject();
-        //SpriteRenderer snakeSpriteRenderer = snakeHeadGameObject.AddComponent<SpriteRenderer>();
-        //snakeSpriteRenderer.sprite = GameAssets.i.snakeHeadSprite;
+
+    }
+
+    private void Awake()
+    {
+        //instance = this;
+        InitializeStatic();
+    }
+
+    public static int getScore()
+    {
+        return score;
+    }
+
+    public static void addScore()
+    {
+        score += 100;
+    }
+
+    private static void InitializeStatic()
+    {
+        score = 0;
+    }
+
+    public static void SnakeDied()
+    {
+        GameOverWindow.ShowStatic();
     }
 
 }
